@@ -1,17 +1,22 @@
 
 FROM ttbb/base:jdk8
 
-WORKDIR /opt/sh/apollo-config
+ENV APOLLO_HOME /opt/sh/apollo
 
-COPY source /opt/sh/apollo-config/hzj
+WORKDIR /opt/sh/apollo/apollo-config
 
-ARG version=1.8.2
-ARG download=1.8.2-github
+COPY source /opt/sh/apollo/apollo-config/hzj
 
-RUN wget https://github.com/ctripcorp/apollo/releases/download/v$version/apollo-configservice-1.8.2-github.zip  && \
-unzip apollo-configservice-$download.zip && \
-rm -rf apollo-configservice-$download.zip && \
-cp hzj/conf/apollo-config.properties config/application-github.properties && \
-cp hzj/conf/apollo-configservice.conf apollo-configservice.conf
+ARG version=1.9.1
+ARG download=1.9.1-github
 
-CMD ["/usr/local/bin/dumb-init", "bash", "-vx", "/opt/sh/apollo-config/hzj/scripts/start.sh"]
+RUN wget https://github.com/ctripcorp/apollo/releases/download/v$version/apollo-configservice-1.9.1-github.zip  && \
+    unzip apollo-configservice-$download.zip && \
+    rm -rf apollo-configservice-$download.zip && \
+    cp hzj/conf/apollo-config.properties config/application-github.properties && \
+    cp hzj/conf/apollo-configservice.conf apollo-configservice.conf && \
+    mkdir /opt/sh/apollo/apollo-config/logs
+
+WORKDIR /opt/sh/apollo
+
+CMD ["/usr/local/bin/dumb-init", "bash", "-vx", "/opt/sh/apollo/apollo-config/hzj/scripts/start.sh"]
