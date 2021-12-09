@@ -1,13 +1,13 @@
 # docker run ttbb/apollo:admin
 # docker run -it ttbb/apollo:admin bash
-FROM ttbb/base:jdk8
+FROM ttbb/base:jdk11
 
 WORKDIR /opt/sh/apollo-admin
 
 COPY source /opt/sh/apollo-admin/hzj
 
-ARG version=1.8.2
-ARG download=1.8.2-github
+ARG version=1.9.1
+ARG download=1.9.1-github
 
 RUN wget https://github.com/ctripcorp/apollo/releases/download/v$version/apollo-adminservice-$download.zip  && \
 unzip apollo-adminservice-$download.zip && \

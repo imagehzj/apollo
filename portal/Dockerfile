@@ -1,13 +1,13 @@
 # docker run ttbb/apollo:portal
 # docker run -it ttbb/apollo:portal bash
-FROM ttbb/base:jdk8
+FROM ttbb/base:jdk11
 
 WORKDIR /opt/sh/apollo-portal
 
 COPY source /opt/sh/apollo-portal/hzj
 
-ARG version=1.8.2
-ARG download=1.8.2-github
+ARG version=1.9.1
+ARG download=1.9.1-github
 
 RUN wget https://github.com/ctripcorp/apollo/releases/download/v$version/apollo-portal-$download.zip  && \
 unzip apollo-portal-$download.zip && \

@@ -2,7 +2,7 @@ FROM ttbb/apollo:admin AS admin
 FROM ttbb/apollo:config AS config
 FROM ttbb/apollo:portal AS portal
 
-FROM ttbb/base:jdk8
+FROM ttbb/base:jdk11
 
 # install mysql first
 WORKDIR /opt/sh
